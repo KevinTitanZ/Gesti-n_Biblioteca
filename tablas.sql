@@ -1,9 +1,23 @@
+--ASI LE VAMOS A LLAMAR A LA BASE DE DATOS
+CREATE DATABASE gestion_biblioteca;
+
+--EL UNICO ADMIN
+INSERT INTO usuarios (nombre, email, contrasena, rol) 
+VALUES ('Admin', 'admin@biblioteca.com', PASSWORD('admin123'), 'administrador');
+
+--SOLO SI SE NECESITA XDD
+UPDATE usuarios 
+SET contrasena = '$2y$10$zuw/MUAuU4uMpFLUmEFAYOJW06UT9Rz8iBDQb1o62infAoNP3R9fS' 
+WHERE email = 'admin@biblioteca.com';
+
+
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100),
-    email VARCHAR(100) UNIQUE,
-    contrasena VARCHAR(255),
-    rol ENUM('usuario', 'administrador') DEFAULT 'usuario'
+    email VARCHAR(100) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    rol ENUM('usuario', 'administrador') DEFAULT 'usuario',
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE libros (
@@ -11,6 +25,7 @@ CREATE TABLE libros (
     titulo VARCHAR(255),
     autor VARCHAR(255),
     categoria VARCHAR(100),
+    cantidad VARCHAR(100),
     estado ENUM('disponible', 'reservado', 'prestado') DEFAULT 'disponible'
 );
 
