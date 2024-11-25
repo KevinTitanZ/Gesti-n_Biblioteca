@@ -55,60 +55,56 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4"><i class="fa-solid fa-book"></i> Gestionar Libros</h1>
-
-        <div class="d-flex justify-content-between mb-3">
-            <a href="gestionar_libros.php" class="btn btn-secondary"><i class="fa-solid fa-list"></i> Ver Listado</a>
-            <a href="agregar_libro.php" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar Nuevo Libro</a>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Menú lateral -->
+        <div class="col-md-2 bg-dark text-white vh-100">
+            <?php include '../menu.php'; ?>
         </div>
 
-        <div class="table-container">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr class="table-primary fw-bold">
-                        <!-- <td class="text-center">ID</td> -->
-                        <td class="text-center">Título</td>
-                        <td class="text-center">Autor</td>
-                        <td class="text-center">Cantidad</td>
-                        <td class="text-center Acciones">Acciones</td>
-                    </tr>
-                </thead>
-                <?php if (count($libros) > 0): ?>
-                    <?php foreach ($libros as $libro): ?>
-                        <!-- <td class="text-center"><?= $libro['id']; ?></td> -->
-                        <td class="text-center"><?= htmlspecialchars($libro['titulo']); ?></td>
-                        <td class="text-center"><?= htmlspecialchars($libro['autor']); ?></td>
-                        <td class="text-center"><?= $libro['cantidad']; ?></td>
-                        <td class="text-center">
-                            <div class="dropdown">
-                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img class="ButtonSizeImg" src="../imagenes/svg/gear-wide-connected.svg" alt="Opciones" />
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="editar_libro.php?id=<?= $libro['id'] ?>" class="dropdown-item" title="Editar">
-                                            <img class="ButtonSizeImg me-2" src="../imagenes/svg/pencil-square.svg" alt="Editar" />
-                                            Editar
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="eliminar_libro.php?id=<?= $libro['id'] ?>" class="dropdown-item text-danger" title="Eliminar"
-                                            onclick="return confirm('¿Estás seguro de eliminar este libro?')">
-                                            <img class="ButtonSizeImg me-2" src="../imagenes/svg/trash.svg" alt="Eliminar" />
-                                            Eliminar
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </td>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="5" class="text-muted text-center">No hay libros registrados.</td>
-                    </tr>
-                <?php endif; ?>
-            </table>
+            <!-- Contenido principal -->
+            <main class="col-md-9 col-lg-10 ms-sm-auto px-md-4">
+                <div class="container mt-5">
+                    <h1 class="text-center mb-4"><i class="fa-solid fa-book"></i> Gestionar Libros</h1>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <a href="gestionar_libros.php" class="btn btn-secondary"><i class="fa-solid fa-list"></i> Ver Listado</a>
+                        <a href="agregar_libro.php" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar Nuevo Libro</a>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr class="table-primary fw-bold">
+                                    <td class="text-center">Título</td>
+                                    <td class="text-center">Autor</td>
+                                    <td class="text-center">Cantidad</td>
+                                    <td class="text-center Acciones">Acciones</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if (count($libros) > 0): ?>
+                                    <?php foreach ($libros as $libro): ?>
+                                        <tr>
+                                            <td class="text-center"><?= htmlspecialchars($libro['titulo']); ?></td>
+                                            <td class="text-center"><?= htmlspecialchars($libro['autor']); ?></td>
+                                            <td class="text-center"><?= $libro['cantidad']; ?></td>
+                                            <td class="text-center">
+                                                <a href="editar_libro.php?id=<?= $libro['id'] ?>" class="btn btn-warning btn-sm">Editar</a>
+                                                <a href="eliminar_libro.php?id=<?= $libro['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este libro?')">Eliminar</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="4" class="text-muted text-center">No hay libros registrados.</td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
         </div>
     </div>
 

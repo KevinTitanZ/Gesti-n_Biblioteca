@@ -38,55 +38,53 @@
 
 <body>
     <!-- Menú lateral -->
-    <div id="sidebar" class="d-flex flex-column">
-        <h3 class="text-center py-3">Mi Menú</h3>
+    <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+    <div class="position-sticky">
+        <h3 class="text-center py-3 text-white">Menú</h3>
         <ul class="nav flex-column">
             <!-- Libros -->
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#menuLibros" role="button" aria-expanded="false" aria-controls="menuLibros">
+                <a class="nav-link text-white" data-bs-toggle="collapse" href="#menuLibros" role="button" aria-expanded="false" aria-controls="menuLibros">
                     <i class="fa-solid fa-book me-2"></i> Libros
                 </a>
                 <div class="collapse ps-3" id="menuLibros">
                     <ul class="nav flex-column">
-                        <li><a href="gestionar_libros.php" class="nav-link">Gestionar Libros</a></li>
-                        <li><a href="agregar_libro.php" class="nav-link">Agregar Libro</a></li>
-                        <li><a href="buscar_libro.php" class="nav-link">Buscar Libro</a></li>
+                        <li><a href="gestionar_libros.php" class="nav-link text-white">Gestionar Libros</a></li>
+                        <li><a href="agregar_libro.php" class="nav-link text-white">Agregar Libro</a></li>
+                        <li><a href="buscar_libro.php" class="nav-link text-white">Buscar Libro</a></li>
                     </ul>
                 </div>
             </li>
 
             <!-- Usuarios -->
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#menuUsuarios" role="button" aria-expanded="false" aria-controls="menuUsuarios">
+                <a class="nav-link text-white" data-bs-toggle="collapse" href="#menuUsuarios" role="button" aria-expanded="false" aria-controls="menuUsuarios">
                     <i class="fa-solid fa-users me-2"></i> Usuarios
                 </a>
                 <div class="collapse ps-3" id="menuUsuarios">
                     <ul class="nav flex-column">
-                        <li><a href="gestionar_usuarios.php" class="nav-link">Gestionar Usuarios</a></li>
-                        <li><a href="agregar_usuario.php" class="nav-link">Agregar Usuario</a></li>
+                        <li><a href="gestionar_usuarios.php" class="nav-link text-white">Gestionar Usuarios</a></li>
+                        <li><a href="agregar_usuario.php" class="nav-link text-white">Agregar Usuario</a></li>
                     </ul>
                 </div>
             </li>
 
             <!-- Otros -->
             <li class="nav-item">
-                <a href="estadisticas.php" class="nav-link">
+                <a href="estadisticas.php" class="nav-link text-white">
                     <i class="fa-solid fa-chart-line me-2"></i> Estadísticas
                 </a>
             </li>
             <li class="nav-item">
-                <a href="configuracion.php" class="nav-link">
+                <a href="configuracion.php" class="nav-link text-white">
                     <i class="fa-solid fa-cog me-2"></i> Configuración
                 </a>
             </li>
         </ul>
     </div>
+</nav>
 
-    <!-- Contenido principal -->
-    <div id="content">
-        <h1>Bienvenido</h1>
-        <p>Este es el área principal de tu programa. Elige una opción del menú lateral para empezar.</p>
-    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
