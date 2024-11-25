@@ -36,29 +36,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4"><i class="fa-solid fa-book"></i> Agregar Nuevo Libro</h1>
-        <div class="d-flex justify-content-between mb-3">
-            <a href="gestionar_libros.php" class="btn btn-secondary"><i class="fa-solid fa-list"></i> Ver Listado</a>
-            <a href="agregar_libro.php" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar Nuevo Libro</a>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Menú lateral -->
+            <div class="col-md-2 bg-dark text-white vh-100">
+                <?php include '../menu.php'; ?>
+            </div>
+
+            <!-- Contenido principal -->
+            <div class="col-md-10 p-4">
+                <h1 class="text-center mb-4"><i class="fa-solid fa-book"></i> Agregar Nuevo Libro</h1>
+                <div class="d-flex justify-content-between mb-3">
+                    <a href="gestionar_libros.php" class="btn btn-secondary">
+                        <i class="fa-solid fa-list"></i> Ver Listado
+                    </a>
+                    <a href="agregar_libro.php" class="btn btn-primary">
+                        <i class="fa-solid fa-plus"></i> Agregar Nuevo Libro
+                    </a>
+                </div>
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Título</label>
+                        <input type="text" id="titulo" name="titulo" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="autor" class="form-label">Autor</label>
+                        <input type="text" id="autor" name="autor" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad</label>
+                        <input type="number" id="cantidad" name="cantidad" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <a href="gestionar_libros.php" class="btn btn-secondary">Volver</a>
+                </form>
+            </div>
         </div>
-        <form action="" method="POST">
-            <div class="mb-3">
-                <label for="titulo" class="form-label">Título</label>
-                <input type="text" id="titulo" name="titulo" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="autor" class="form-label">Autor</label>
-                <input type="text" id="autor" name="autor" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="cantidad" class="form-label">Cantidad</label>
-                <input type="number" id="cantidad" name="cantidad" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-success">Guardar</button>
-            <a href="gestionar_libros.php" class="btn btn-secondary">Volver</a>
-        </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>
