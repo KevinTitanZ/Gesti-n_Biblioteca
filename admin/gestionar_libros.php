@@ -66,11 +66,11 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <main class="col-md-9 col-lg-10 ms-sm-auto px-md-4">
                 <div class="container mt-5">
                     <h1 class="text-center mb-4"><i class="fa-solid fa-book"></i> Gestionar Libros</h1>
-
+<!-- 
                     <div class="d-flex justify-content-between mb-3">
                         <a href="gestionar_libros.php" class="btn btn-secondary"><i class="fa-solid fa-list"></i> Ver Listado</a>
                         <a href="agregar_libro.php" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar Nuevo Libro</a>
-                    </div>
+                    </div> -->
 
                     <div class="table-container">
                         <table class="table table-striped table-bordered table-hover">

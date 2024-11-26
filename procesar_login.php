@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'includes/db.php'; 
+include 'includes/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($usuario) {
             if (password_verify($contrasena, $usuario['contrasena'])) {
+                // Inicia sesión y redirige
                 $_SESSION['id_usuario'] = $usuario['id'];
                 $_SESSION['rol'] = $usuario['rol'];
                 $_SESSION['nombre'] = $usuario['nombre'];
@@ -25,13 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
                 exit;
             } else {
-                echo "Credenciales incorrectas.";
+                $_SESSION['error'] = "Contraseña incorrecta";
             }
         } else {
-            echo "Credenciales incorrectas.";
+            $_SESSION['error'] = "El usuario no existe";
         }
     } catch (PDOException $e) {
-        echo "Error en la conexión: " . $e->getMessage();
+        $_SESSION['error'] = "Error en la conexión";
     }
+    header('Location: login.php');
+    exit;
 }
 ?>
