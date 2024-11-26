@@ -12,13 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $titulo = $_POST['titulo'];
     $autor = $_POST['autor'];
     $cantidad = $_POST['cantidad'];
+    $categoria = $_POST['categoria'];
 
-    $sql = "INSERT INTO libros (titulo, autor, cantidad) VALUES (:titulo, :autor, :cantidad)";
+    $sql = "INSERT INTO libros (titulo, autor, cantidad,categoria) VALUES (:titulo, :autor, :cantidad, :categoria)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         'titulo' => $titulo,
         'autor' => $autor,
-        'cantidad' => $cantidad
+        'cantidad' => $cantidad,
+        'categoria' => $categoria
     ]);
 
     header('Location: gestionar_libros.php');
@@ -66,6 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="mb-3">
                         <label for="cantidad" class="form-label">Cantidad</label>
                         <input type="number" id="cantidad" name="cantidad" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoria</label>
+                        <input type="text" id="categoria" name="categoria" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-success">Guardar</button>
                     <a href="gestionar_libros.php" class="btn btn-secondary">Volver</a>
