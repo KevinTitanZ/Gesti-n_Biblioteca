@@ -2,6 +2,7 @@
 session_start();
 include '../includes/db.php';
 
+
 // Verifica si el usuario es administrador
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'administrador') {
     header('Location: ../login.php');
@@ -59,7 +60,7 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="row">
         <!-- Menú lateral -->
         <div class="col-md-2 bg-dark text-white vh-100">
-            <?php include '../menu.php'; ?>
+        <?php include '../menu.php'; ?>
         </div>
 
             <!-- Contenido principal -->
@@ -78,6 +79,7 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <tr class="table-primary fw-bold">
                                     <td class="text-center">Título</td>
                                     <td class="text-center">Autor</td>
+                                    <td class="text-center">Categoría</td>
                                     <td class="text-center">Cantidad</td>
                                     <td class="text-center Acciones">Acciones</td>
                                 </tr>
@@ -88,10 +90,12 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <tr>
                                             <td class="text-center"><?= htmlspecialchars($libro['titulo']); ?></td>
                                             <td class="text-center"><?= htmlspecialchars($libro['autor']); ?></td>
+                                            <td class="text-center"><?= htmlspecialchars($libro['categoria']); ?></td>
                                             <td class="text-center"><?= $libro['cantidad']; ?></td>
                                             <td class="text-center">
-                                                <a href="editar_libro.php?id=<?= $libro['id'] ?>" class="btn btn-warning btn-sm">Editar</a>
-                                                <a href="eliminar_libro.php?id=<?= $libro['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este libro?')">Eliminar</a>
+                                                <a href="editar_libro.php?id=<?= $libro['id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-edit"></i> Editar</a>
+                                                <a href="eliminar_libro.php?id=<?= $libro['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este libro?')"> <i class="fa-solid fa-trash"></i> Eliminar
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

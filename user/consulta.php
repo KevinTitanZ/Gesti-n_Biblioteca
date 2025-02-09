@@ -4,13 +4,12 @@ include '../includes/db.php'; // Asegúrate de que tu archivo de conexión a la 
 
 // Validar si el usuario está logueado
 if (!isset($_SESSION['id_usuario'])) {
-    echo "<p>Debes iniciar sesión para realizar una reserva.</p>";
+    echo "<script>Swal.fire('Error', 'Debes iniciar sesión para realizar una reserva.', 'error');</script>";
     exit;
 }
 
 $id_usuario = $_SESSION['id_usuario']; // Obtener el ID del usuario logueado
 
-// Verificar si se ha enviado una solicitud de reserva
 if (isset($_GET['reservar'])) {
     $id_libro = $_GET['reservar'];
 
@@ -22,13 +21,13 @@ if (isset($_GET['reservar'])) {
         $libro = $stmt_verificar_libro->fetch(PDO::FETCH_ASSOC);
 
         if (!$libro) {
-            echo "<p>El libro seleccionado no existe.</p>";
+            echo "<script>Swal.fire('Error', 'El libro seleccionado no existe.', 'error');</script>";
             exit;
         }
 
         // Verificar si el libro tiene cantidad disponible
         if ($libro['estado'] !== 'disponible' || $libro['cantidad'] <= 0) {
-            echo "<p>El libro no está disponible para reserva. Estado: " . $libro['estado'] . "</p>";
+            echo "<script>Swal.fire('Error', 'El libro no está disponible para reserva. Estado: " . $libro['estado'] . "', 'error');</script>";
             exit;
         }
 
@@ -38,7 +37,7 @@ if (isset($_GET['reservar'])) {
         $stmt_verificar_reserva->execute(['id_usuario' => $id_usuario, 'id_libro' => $id_libro]);
 
         if ($stmt_verificar_reserva->rowCount() > 0) {
-            echo "<p>Ya has reservado este libro. Espera a que se confirme la reserva.</p>";
+            echo "<script>Swal.fire('Aviso', 'Ya has reservado este libro. Espera a que se confirme la reserva.', 'info');</script>";
             exit;
         }
 
@@ -59,16 +58,34 @@ if (isset($_GET['reservar'])) {
             $stmt_actualizar_estado->execute(['id_libro' => $id_libro]);
         }
 
-        echo "<p>¡Reserva realizada con éxito! El libro ha sido reservado.</p>";
+        // Después de la reserva exitosa
+echo "<script>
+Swal.fire('Éxito', '¡Reserva realizada con éxito! El libro ha sido reservado.', 'success').then(() => {
+    window.location.href = 'consulta.php'; // Redirige a consulta.php después de mostrar la alerta
+});
+</script>";
     } catch (PDOException $e) {
-        echo "<p>Error en la base de datos: " . $e->getMessage() . "</p>";
+        echo "<script>Swal.fire('Error', 'Error en la base de datos: " . $e->getMessage() . "', 'error');</script>";
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros Disponibles para Reserva</title>
+    <link rel="stylesheet" href="../css/consulta.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.3/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.3/dist/sweetalert2.min.js"></script>
+</head>
+<body>
 
-<!-- Mostrar los libros disponibles -->
-<h1>Libros Disponibles para Reserva</h1>
-<table border="1">
+<header>
+    <h1>Libros Disponibles para Reserva</h1>
+</header>
+
+<table>
     <thead>
         <tr>
             <th>Título</th>
@@ -103,3 +120,10 @@ if (isset($_GET['reservar'])) {
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<footer>
+    <p>&copy; 2025 Biblioteca Digital. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>

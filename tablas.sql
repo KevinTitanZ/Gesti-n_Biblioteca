@@ -38,3 +38,9 @@ CREATE TABLE reservas (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
     FOREIGN KEY (id_libro) REFERENCES libros(id)
 );
+
+
+-- por si las moscas
+ALTER TABLE reservas
+DROP FOREIGN KEY reservas_ibfk_2,  -- Primero eliminamos la clave foránea
+ADD CONSTRAINT reservas_ibfk_2 FOREIGN KEY (id_libro) REFERENCES libros(id) ON DELETE CASCADE;

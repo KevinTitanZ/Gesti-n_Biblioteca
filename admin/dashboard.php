@@ -16,15 +16,14 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'administrador') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-4">
+<div class="col-md-2 bg-dark text-white vh-100">
+<?php include '../menu.php'; ?>
+            </div>
+            <div class="container mt-4 d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="text-center">
         <h1>Bienvenido, Administrador</h1>
         <p>Desde aquí puedes gestionar las operaciones de la biblioteca.</p>
-        <ul class="list-group">
-            <li class="list-group-item"><a href="gestionar_libros.php">Gestionar Libros</a></li>
-            <li class="list-group-item"><a href="gestionar_usuarios.php">Gestionar Usuarios</a></li>
-            <li class="list-group-item"><a href="estadisticas.php">Ver Estadísticas</a></li>
-            <li class="list-group-item"><a href="../logout.php" class="text-danger">Cerrar Sesión</a></li>
-        </ul>
     </div>
+</div>
 </body>
 </html>

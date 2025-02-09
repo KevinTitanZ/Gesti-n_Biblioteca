@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cantidad = $_POST['cantidad'];
     $categoria = $_POST['categoria'];
 
-    $sql = "INSERT INTO libros (titulo, autor, cantidad,categoria) VALUES (:titulo, :autor, :cantidad, :categoria)";
+    $sql = "INSERT INTO libros (titulo, autor, cantidad, categoria) VALUES (:titulo, :autor, :cantidad, :categoria)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         'titulo' => $titulo,
@@ -48,15 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Contenido principal -->
             <div class="col-md-10 p-4">
                 <h1 class="text-center mb-4"><i class="fa-solid fa-book"></i> Agregar Nuevo Libro</h1>
-                <!-- <div class="d-flex justify-content-between mb-3">
-                    <a href="gestionar_libros.php" class="btn btn-secondary">
-                        <i class="fa-solid fa-list"></i> Ver Listado
-                    </a>
-                    <a href="agregar_libro.php" class="btn btn-primary">
-                        <i class="fa-solid fa-plus"></i> Agregar Nuevo Libro
-                    </a>
-                </div> -->
-                <form action="" method="POST">
+                <form action="" method="POST" class="bg-light p-4 rounded shadow">
                     <div class="mb-3">
                         <label for="titulo" class="form-label">Título</label>
                         <input type="text" id="titulo" name="titulo" class="form-control" required>
@@ -70,11 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="number" id="cantidad" name="cantidad" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="categoria" class="form-label">Categoria</label>
+                        <label for="categoria" class="form-label">Categoría</label>
                         <input type="text" id="categoria" name="categoria" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                    <a href="gestionar_libros.php" class="btn btn-secondary">Volver</a>
+                    <button type="submit" class="btn btn-success"><i class="fa-solid fa-save"></i> Guardar</button>
+                    <a href="gestionar_libros.php" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Volver</a>
                 </form>
             </div>
         </div>

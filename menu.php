@@ -76,7 +76,7 @@
                     </a>
                     <div class="collapse ps-3" id="menuUsuarios">
                         <ul class="nav flex-column">
-                            <li><a href="gestionar_usuarios.php" class="nav-link text-white">Gestionar Usuarios</a></li>
+                            <li><a href="gestionar_usuario.php" class="nav-link text-white">Gestionar Usuarios</a></li>
                             <li><a href="agregar_usuario.php" class="nav-link text-white">Agregar Usuario</a></li>
                         </ul>
                     </div>

@@ -24,6 +24,8 @@
             </div>
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
         </form>
+
+        <p>No tienes una Cuenta. <a href="registro.php">Registro</a></p>
     </div>
 
     <?php if (isset($_SESSION['error'])): ?>
