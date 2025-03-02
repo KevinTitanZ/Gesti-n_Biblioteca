@@ -8,12 +8,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
 
     try {
-        $sql = "INSERT INTO usuarios (nombre, email, contrasena) VALUES (:nombre, :email, :contrasena)";
+        // Verificar si el correo ya está registrado
+        $sql = "SELECT COUNT(*) FROM usuarios WHERE email = :email";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['nombre' => $nombre, 'email' => $email, 'contrasena' => $contrasena]);
-        $_SESSION['success'] = "Registro exitoso. ¡Ahora puedes iniciar sesión!";
-        header('Location: login.php');
-        exit;
+        $stmt->execute(['email' => $email]);
+        $existe = $stmt->fetchColumn();
+
+        if ($existe > 0) {
+            $_SESSION['error'] = "El correo ya está registrado. Por favor, usa otro.";
+        } else {
+            // Insertar el usuario si el correo no existe
+            $sql = "INSERT INTO usuarios (nombre, email, contrasena) VALUES (:nombre, :email, :contrasena)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['nombre' => $nombre, 'email' => $email, 'contrasena' => $contrasena]);
+
+            $_SESSION['success'] = "Registro exitoso. ¡Ahora puedes iniciar sesión!";
+            header('Location: login.php');
+            exit;
+        }
     } catch (PDOException $e) {
         $_SESSION['error'] = "Error: " . $e->getMessage();
     }
