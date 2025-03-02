@@ -1,5 +1,6 @@
 <?php
-session_start();
+session_start(); // Asegúrate de que esto esté en la primera línea
+
 include '../includes/db.php';
 
 if (!isset($_SESSION['id_usuario']) || !isset($_GET['id'])) {
@@ -42,21 +43,19 @@ try {
             $stmt->execute([$nueva_cantidad, $nuevo_estado, $id_libro]);
 
             $pdo->commit();
-            $mensaje = "Libro reservado con éxito.";
+            $_SESSION['mensaje'] = "Libro reservado con éxito.";
         } else {
             $pdo->rollBack();
-            $mensaje = "Ya has reservado un libro con el mismo título y autor.";
+            $_SESSION['mensaje'] = "Ya has reservado un libro con el mismo título y autor.";
         }
     } else {
         $pdo->rollBack();
-        $mensaje = "El libro no está disponible para reserva.";
+        $_SESSION['mensaje'] = "El libro no está disponible para reserva.";
     }
 } catch (Exception $e) {
     $pdo->rollBack();
-    $mensaje = "Error al procesar la reserva: " . $e->getMessage();
+    $_SESSION['mensaje'] = "Error al procesar la reserva: " . $e->getMessage();
 }
 
-$_SESSION['mensaje'] = $mensaje;
 header('Location: libros_disponibles.php');
 exit;
-

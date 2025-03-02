@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($usuario['rol'] === 'administrador') {
                     header('Location: admin/dashboard.php');
                 } else {
-                    header('Location: user/consulta.php');
+                    header('Location: user/libros_disponibles.php');
                 }
                 exit;
             } else {

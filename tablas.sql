@@ -34,7 +34,7 @@ CREATE TABLE reservas (
     id_usuario INT,
     id_libro INT,
     fecha_reserva DATETIME DEFAULT CURRENT_TIMESTAMP,
-    estado ENUM('pendiente', 'completado') DEFAULT 'pendiente',
+    estado ENUM('pendiente', 'completado') DEFAULT 'Reservado',
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
     FOREIGN KEY (id_libro) REFERENCES libros(id)
 );

@@ -45,7 +45,7 @@ $libros = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($libro['categoria']); ?></td>
                     <td><?php echo htmlspecialchars($libro['cantidad']); ?></td>
                     <td>
-                        <a href="reserva.php?reservar=<?php echo $libro['id']; ?>">Reservar</a>
+                        <a href="reservar.php?reservar=<?php echo $libro['id']; ?>">Reservar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

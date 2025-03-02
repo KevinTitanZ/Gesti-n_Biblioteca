@@ -51,7 +51,8 @@
 
 <body>
     <!-- Menú lateral -->
-    <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
+    <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar" style="background-color: #0056b3;">
+
         <div class="position-sticky">
             <h3 class="text-center py-3 text-white">Menú</h3>
             <ul class="nav flex-column">
@@ -90,13 +91,13 @@
                 </li>
                 <li class="nav-item">
                     <a href="configuracion.php" class="nav-link text-white">
-                        <i class="fa-solid fa-cog me-2"></i> Configuración
+                        <i class="fa-solid fa-cog me-2"></i> Reserva de Libros
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="logout.php" class="nav-link text-white">
-                        <i class="fa-solid fa-cog me-2"></i> Salir
+                    <i class="fa-solid fa-right-from-bracket"></i> Salir
                     </a>
                 </li>
             </ul>
